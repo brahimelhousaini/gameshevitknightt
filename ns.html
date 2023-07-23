@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Text Effect with Translation, Speech, and Music</title>
+  <style>
+    body {
+      background-color: #111;
+      color: #fff;
+      font-family: 'Arial', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      height: 100vh;
+      margin: 0px;
+      background-image: url(DARK\ MOROCCO\(4\).png);
+      font-size: 20px;
+    }
+
+    button{
+      margin-bottom: 18px;
+      --primary-color: #494949;
+    --secondary-color: #d9d9d9;
+    --hover-color: #111;
+    --arrow-width: 10px;
+    --arrow-stroke: 2px;
+    box-sizing: border-box;
+    border: 0;
+    border-radius: 7px;
+    color: var(--secondary-color);
+    padding: 1em 1.8px;
+    background: var(--primary-color);
+    display: flex;
+    transition: 0.2s background;
+    align-items: center;
+    gap: 0.8em;
+    font-weight: bold;
+    background-image: url(edf95a5721603940ea94b1802cff9bd2.jpg);
+    background-size: cover;
+    font-size: 20px;
+    text-transform: uppercase;
+    }
+
+    select {
+      margin-bottom: 180px;
+      --primary-color: #494949;
+    --secondary-color: #dadada;
+    --hover-color: #111;
+    --arrow-width: 10px;
+    --arrow-stroke: 2px;
+    box-sizing: border-box;
+    border: 0;
+    border-radius: 7px;
+    color: var(--secondary-color);
+    padding: 1em 1.8px;
+    background: var(--primary-color);
+    display: flex;
+    transition: 0.2s background;
+    align-items: center;
+    gap: 0.6em;
+    font-weight: bold;
+    background-image: url(edf95a5721603940ea94b1802cff9bd2.jpg);
+    background-size: cover;
+    }
+  </style>
+</head>
+<body>
+  <div blue;>
+    <label style="background-color: rgb(62, 62, 62);" for="languageSelect"></label>
+    <select id="languageSelect">
+     
+      <option style="background-color: rgb(106, 106, 106);"  value="ar">A story of kingdom and betrayal </option>
+      <option value="en">Games instructions read carefully please</option>
+    </select>
+  </div>
+
+
+  <div id="textEffect"></div>
+
+  <!-- Audio element for music -->
+  <audio id="backgroundMusic" loop>
+    <source src="صوت الكتابة للمونتاج(MP3_160K).mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+
+
+  <script>
+    const textEffectElement = document.getElementById('textEffect');
+    const languageSelect = document.getElementById('languageSelect');
+    const textEnglish = `اقرأ قوانين اللعبة جيدًا إذا أردت الخروج من العدم واستعادة المملكة والعرش.
+    أولاً، في المستوى الأول، عليك المغادرة بطريقة تقليدية أو انتظار دور البوابة لبضع دقائق. ولكن قبل دخول البوابة، عليك أن لا يكون لديك أي نقاط 
+    بعد ذلك، يمكنك التحول بين المستويات بحسب حصولك على هذه النقاط: 50، 100، 150، 200، 250.  `;
+
+    const textArabic = `بعد ألف عام من السلام والوئام، كانت المملكة العظيمة تعيش في طمأنينة تحت حكم الملك الحكيم آرثر. لكن هذا السلام لم يدم طويلاً، ففي يومٍ من الأيام، حدثت خيانة لا تُصدق.
+
+    كان هناك أخوين عظيمين، آرثر وميلكور، كلاهما يملكان قوًى سحرية فريدة. كان ميلكور يتحكم بالأشباح ويستطيع إرسالها إلى أي مكان في العالم، بينما كان آرثر يحتضن قوى خفية للسيطرة على قوى الطبيعة والعناصر.
+
+    في يوم من الأيام، وبعد عودة ميلكور من رحلة طويلة، قرر السيطرة على العرش وتحكم المملكة. قام بخيانة أخيه الحبيب واستخدم قوته السحرية لإرساله إلى العدم خارج الأرض، في مكان لا يمكنه العودة منه أبدًا.
+
+    والآن، في عالم مظلم تحت سيطرة ميلكور، يجد نفسه آرثر وحيدًا في العدم، وحوله تحلق الأشباح المرعبة.`;
+
+
+    const backgroundMusic = document.getElementById('backgroundMusic');
+
+    let index = 0;
+    let currentText = textArabic;
+
+    function animateText() {
+      if (index < currentText.length) {
+        if (index === 0) {
+          if (languageSelect.value === 'en') {
+            speakText(textEnglish);
+          } else {
+            speakText(textArabic);
+          }
+          playBackgroundMusic();
+        }
+        textEffectElement.textContent += currentText.charAt(index);
+        index++;
+        setTimeout(animateText, 70); // يمكنك ضبط سرعة الظهور بتغيير القيمة هنا (بالمللي ثانية)
+      }
+    }
+
+    function speakText(text) {
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = languageSelect.value;
+      speechSynthesis.speak(utterance);
+    }
+
+    function playBackgroundMusic() {
+      // قم بتعديل مسار الموسيقى الصحيح هنا
+      backgroundMusic.src = '  صوت الكتابة للمونتاج(MP3_160K).mp3';
+      backgroundMusic.play();
+    }
+
+    languageSelect.addEventListener('change', () => {
+      if (languageSelect.value === 'en') {
+        currentText = textEnglish;
+      } else {
+        currentText = textArabic;
+      }
+      textEffectElement.textContent = '';
+      index = 0;
+      animateText();
+    });
+
+    animateText();
+  </script>
+
+
+<button>
+  <a style="color: #b8b8b8; text-decoration: none;" href="home.html">game play</a>
+  <div class="arrow-wrapper">
+      <div class="arrow"></div>
+
+  </div>
+</button>
+
+</body>
+</html>

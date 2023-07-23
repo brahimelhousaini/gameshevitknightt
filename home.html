@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<link rel="stylesheet" href="style.css">
+<link rel="icon" href="featurediogospecter.png">
+
+<html>
+<head>
+  <title>game shevit knight</title>
+  <style>
+    
+    .tank {
+      position: absolute;
+      width: 160px;
+      height: 160px;
+      background-image: url("d93e1b7bdc76130.png");
+      background-size: cover;
+    }
+
+    .rocket {
+      position: absolute;
+      width: 200px;
+      height: 120px;
+      background-image: url("vecteezy_fire-flames-explosion_12629336_372.png");
+      background-size: cover;
+      transform-origin: left center;
+    }
+
+    .car {
+      position: absolute;
+      width: 150px;
+      height: 150px;
+      background-image: url("Screenshot_2023-07-18_005603-removebg-preview.png");
+      background-size: cover;
+      top: 0;
+    }
+
+    .explosion {
+      position: absolute;
+      width: 200px;
+      height: 200px;
+      background-image: url("pngegg(5).png");
+      background-size: cover;
+      animation: explode 0.5s steps(8) forwards;
+    }
+
+    @keyframes explode {
+      from {
+        background-position: 0 0;
+      }
+      to {
+        background-position: -800px 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div id="game-container">
+    <div id="player-tank" class="tank"></div>
+  </div>
+
+  
+
+  <audio id="rocket-audio" src="Fire Whoosh Sound Effect Commercial(MP3_160K).mp3"></audio>
+  <audio id="collision-audio" src="Binary_Code_Interface_Sound_Effects_Sci_Fi_Computer_Beeps_Data_Processing.mp"></audio>
+  <audio id="explosion-audio" src="صوت_ضربة_كاتانا_Sound_Effects_Katana_Swing_9_للمونتاجMP3_160K.mp3"></audio>
+
+  <div style="display: flex;"><img style="height: 30px;" src="pngwing.com(22).pn" alt=""><div  class="sco" id="score">النقاط:0</div></div> 
+  <div style="display: flex;"><img style="height: 24px ; " src="2a087679117688f1c30ff0d9a59eb9aa-removebg-preview.pn" alt=""><div class="tim" id="timer">الوقت:0</div></div>
+
+  <table id="score-table" style="display: none;">
+    <thead">
+      <tr style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+        <th>match</th>
+        <th>points</th>
+        <th> time</th>
+      </tr>
+    </thead>
+    <tbody id="score-table-body"></tbody>
+  </table>
+
+  <div id="myTextDiv"></div>
+
+
+  <p style="color: aliceblue; font-size: 8px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; width: 40%; " id="welcome-text">مرحبًا بالعالم</p>
+   
+
+
+  <div class="bottom-images-container">
+    <img class="bottom-image" src="dark_web_morocco_5_-removebg-preview.png" alt="صورة 1">
+  </div>
+  
+
+  <script src="game.js"></script>
+</body>
+</html>
